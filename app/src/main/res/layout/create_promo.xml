@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="20">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="#e40112"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/back" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="Create Promo"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="16"
+        android:orientation="horizontal"
+        android:weightSum="6">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            android:weightSum="13">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Daftar promosi yang sedang berjalan"
+                    android:textColor="#000000"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_create_promo"
+                android:layout_width="match_parent"
+                android:layout_weight="9"
+                android:layout_height="0dp">
+
+            </android.support.v7.widget.RecyclerView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:id="@+id/tambahPromo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/tambah_promo" />
+            </RelativeLayout>
+
+            <!--<LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/tambah_promo" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Promo kue coklat"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="5dp"
+                    android:background="#FF5F5D5D" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/tambah_promo" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Promo kue coklat"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="5dp"
+                    android:background="#FF5F5D5D" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/tambah_promo" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Promo kue coklat"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="5dp"
+                    android:background="#FF5F5D5D" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/tambah_promo" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Promo kue coklat"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="5dp"
+                    android:background="#FF5F5D5D" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/tambah_promo" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Promo kue coklat"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="5dp"
+                    android:background="#FF5F5D5D" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1.5"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/tambah_promo" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Promo kue coklat"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="5dp"
+                    android:background="#FF5F5D5D" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:id="@+id/tambahPromo"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/tambah_promo" />
+            </RelativeLayout>-->
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="2"
+        android:background="#f0f0f0"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <RelativeLayout
+                android:id="@+id/btnHomeCreatePromo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/gambarHome"
+                        android:layout_width="@dimen/gambarTombolUtama"
+                        android:layout_height="@dimen/gambarTombolUtama"
+                        android:src="@drawable/home_grey" />
+
+                    <TextView
+                        android:id="@+id/textGambarHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="home"
+                        android:textColor="#FF5F5D5D"
+                        android:textSize="@dimen/textTombolUtama" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <RelativeLayout
+                android:id="@+id/btnLogout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/gambarLogout"
+                        android:layout_width="@dimen/gambarTombolUtama"
+                        android:layout_height="@dimen/gambarTombolUtama"
+                        android:src="@drawable/logout_grey" />
+
+                    <TextView
+                        android:id="@+id/textGambarLogout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="logout"
+                        android:textColor="#FF5F5D5D"
+                        android:textSize="@dimen/textTombolUtama" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

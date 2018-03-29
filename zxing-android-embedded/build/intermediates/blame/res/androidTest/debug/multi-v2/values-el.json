@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\Semargres2018Merchant\\zxing-android-embedded\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-el\\values-el.xml",
+            "map": [
+                {
+                    "source": "E:\\Semargres2018Merchant\\zxing-android-embedded\\build\\intermediates\\bundles\\debug\\res\\values-el\\values-el.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,114,161,311",
+                        "endColumns": "58,46,149,114",
+                        "endOffsets": "109,156,306,421"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "F:\\Gmedia\\AndroidProject\\Semargres2018Merchant\\zxing-android-embedded\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-el\\values-el.xml",
+            "map": [
+                {
+                    "source": "F:\\Gmedia\\AndroidProject\\Semargres2018Merchant\\zxing-android-embedded\\build\\intermediates\\bundles\\debug\\res\\values-el\\values-el.xml",
+                    "from": {
+                        "startLines": "2,3,4,5",
+                        "startColumns": "4,4,4,4",
+                        "startOffsets": "55,114,161,311",
+                        "endColumns": "58,46,149,114",
+                        "endOffsets": "109,156,306,421"
+                    }
+                }
+            ]
+        }
+    ]
+}

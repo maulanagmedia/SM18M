@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textSizeIsianLogin">25dp</dimen>
+    <dimen name="widthBtnLogin">220dp</dimen>
+    <dimen name="heightBtnLogin">70dp</dimen>
+    <dimen name="textBtnLogin">28dp</dimen>
+    <dimen name="textPenjualanDanSisaKupon">20dp</dimen>
+    <dimen name="gambarMenuUtama">85dp</dimen>
+    <dimen name="textMenuUtama">20dp</dimen>
+    <dimen name="gambarTombolUtama">45dp</dimen>
+    <dimen name="textTombolUtama">18dp</dimen>
+    <dimen name="textSettingPromo">20dp</dimen>
+    <dimen name="textEditTextSettingPromo">25dp</dimen>
+    <dimen name="widthBtnSimpan">230dp</dimen>
+    <dimen name="heightBtnSimpan">60dp</dimen>
+    <dimen name="judulQrCode">25dp</dimen>
+    <dimen name="textContainsDataQrCode">20dp</dimen>
+    <dimen name="textJudulKuponQrCode">20dp</dimen>
+    <dimen name="textJumlahKupon">180dp</dimen>
+    <dimen name="heightImageView">250dp</dimen>
+    <dimen name="marginBottomFooterSplashScreen">35dp</dimen>
+</resources>

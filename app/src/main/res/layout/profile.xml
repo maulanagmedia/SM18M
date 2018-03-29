@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutUtamaProfile"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="20">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="#e40112"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/back"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/back" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="Profile merchant"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="16"
+        android:orientation="horizontal"
+        android:weightSum="6">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            android:weightSum="13">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="12.5">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kategori Merchant"
+                            android:textColor="#000000"
+                            android:textSize="14dp" />
+
+                        <Spinner
+                            android:id="@+id/dropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-5dp">
+
+                        </Spinner>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e30112"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Nama merchant"
+                            android:textColor="#000000"
+                            android:textSize="14dp" />
+
+                        <EditText
+                            android:id="@+id/isianNama"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-5dp"
+                            android:layout_marginTop="-10dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="-10dp"
+                            android:background="#e30112"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Alamat merchant"
+                            android:textColor="#000000"
+                            android:textSize="14dp" />
+
+                        <EditText
+                            android:id="@+id/isianAlamat"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-5dp"
+                            android:layout_marginTop="-10dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="-10dp"
+                            android:background="#e30112"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jam Buka"
+                            android:textColor="#000000"
+                            android:textSize="14dp" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:id="@+id/isianJamBuka"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@android:color/transparent"
+                                android:textColor="#000000"
+                                android:textSize="20dp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/btnJamBuka"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@mipmap/time" />
+                        </RelativeLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e30112"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Jam Tutup"
+                            android:textColor="#000000"
+                            android:textSize="14dp" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical">
+
+                            <TextView
+                                android:id="@+id/isianJamTutup"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@android:color/transparent"
+                                android:textColor="#000000"
+                                android:textSize="20dp"
+                                android:textStyle="bold" />
+
+                            <ImageView
+                                android:id="@+id/btnJamTutup"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentRight="true"
+                                android:src="@mipmap/time" />
+                        </RelativeLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#e30112"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Telp merchant"
+                            android:textColor="#000000"
+                            android:textSize="14dp" />
+
+                        <EditText
+                            android:id="@+id/isianTelpon"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-5dp"
+                            android:layout_marginTop="-10dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:inputType="number"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="-10dp"
+                            android:background="#e30112"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Email merchant"
+                            android:textColor="#000000"
+                            android:textSize="14dp" />
+
+                        <EditText
+                            android:id="@+id/isianEmail"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-5dp"
+                            android:layout_marginTop="-10dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="-10dp"
+                            android:background="#e30112"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Facebook"
+                            android:textColor="#000000"
+                            android:textSize="14dp" />
+
+                        <EditText
+                            android:id="@+id/isianFacebook"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-5dp"
+                            android:layout_marginTop="-10dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="-10dp"
+                            android:background="#e30112"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Instagram"
+                            android:textColor="#000000"
+                            android:textSize="14dp" />
+
+                        <EditText
+                            android:id="@+id/isianInstagram"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-5dp"
+                            android:layout_marginTop="-10dp"
+                            android:backgroundTint="@android:color/transparent"
+                            android:textColor="#000000"
+                            android:textSize="20dp"
+                            android:textStyle="bold" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="-10dp"
+                            android:background="#e30112"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/heightImageView"
+                        android:background="@drawable/background_keterangan_settingpromo">
+
+                        <ImageView
+                            android:id="@+id/showCameraProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <ImageView
+                            android:id="@+id/openCameraProfile"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:clickable="true"
+                            android:src="@mipmap/gallery" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Latitude"
+                                android:textColor="#000000"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:id="@+id/textLatitude"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="#000000"
+                                android:textSize="14dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0.5dp"
+                                android:background="#e30112" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Longitude"
+                                android:textColor="#000000"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:id="@+id/textLongitude"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textColor="#000000"
+                                android:textSize="14dp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0.5dp"
+                                android:background="#e30112" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="170dp">
+
+                        <gmedia.net.id.semargres2018merchant.CustomMapView
+                            android:id="@+id/map"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        </gmedia.net.id.semargres2018merchant.CustomMapView>
+
+                        <ImageView
+                            android:id="@+id/refresh"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="20dp"
+                            android:src="@mipmap/refresh" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp">
+
+                        <Button
+                            android:id="@+id/btnProfile"
+                            android:layout_width="@dimen/widthBtnSimpan"
+                            android:layout_height="@dimen/heightBtnSimpan"
+                            android:layout_centerInParent="true"
+                            android:background="@drawable/mbunderke_tombol_login"
+                            android:text="simpan"
+                            android:textAllCaps="false"
+                            android:textColor="#fcfdfd"
+                            android:textSize="@dimen/textBtnLogin" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="2"
+        android:background="#f0f0f0"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <RelativeLayout
+                android:id="@+id/btnHomeCreatePromo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/gambarHome"
+                        android:layout_width="@dimen/gambarTombolUtama"
+                        android:layout_height="@dimen/gambarTombolUtama"
+                        android:src="@drawable/home_grey" />
+
+                    <TextView
+                        android:id="@+id/textGambarHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="home"
+                        android:textColor="#FF5F5D5D"
+                        android:textSize="@dimen/textTombolUtama" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <RelativeLayout
+                android:id="@+id/btnLogout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/gambarLogout"
+                        android:layout_width="@dimen/gambarTombolUtama"
+                        android:layout_height="@dimen/gambarTombolUtama"
+                        android:src="@drawable/logout_grey" />
+
+                    <TextView
+                        android:id="@+id/textGambarLogout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="logout"
+                        android:textColor="#FF5F5D5D"
+                        android:textSize="@dimen/textTombolUtama" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

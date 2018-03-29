@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="20">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="#e40112"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/backBerhasilQrCode"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/back" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="Daftar QR Code"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="16"
+        android:orientation="horizontal"
+        android:weightSum="6">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5.6"
+            android:orientation="vertical"
+            android:weightSum="13">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="QR Code Berhasil Didaftarkan"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/judulQrCode" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#FF5F5D5D" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:background="@drawable/mbunderke_layout_kuning"
+                android:orientation="vertical"
+                android:weightSum="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.95"
+                    android:background="@drawable/mbunderke_layout"
+                    android:orientation="horizontal"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="5dp"
+                    android:weightSum="5">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5"
+                        android:background="@drawable/mbunderke_background">
+
+                        <ImageView
+                            android:id="@+id/fotoHasilScanBarcode"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.1" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="3.4"
+                        android:orientation="vertical"
+                        android:weightSum="5">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="4"
+                            android:orientation="vertical"
+                            android:weightSum="3">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="5">
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="nama"
+                                        android:textColor="#000000"
+                                        android:textSize="@dimen/textContainsDataQrCode" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=":"
+                                        android:textColor="#000000"
+                                        android:textSize="@dimen/textContainsDataQrCode" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3.8">
+
+                                    <TextView
+                                        android:id="@+id/namaHasilScanBarcode"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        android:ellipsize="end"
+                                        android:text="Doni Bambang"
+                                        android:textColor="#000000"
+                                        android:textSize="@dimen/textContainsDataQrCode" />
+                                </RelativeLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="5">
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="no telp"
+                                        android:textColor="#000000"
+                                        android:textSize="@dimen/textContainsDataQrCode" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=":"
+                                        android:textColor="#000000"
+                                        android:textSize="@dimen/textContainsDataQrCode" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3.8">
+
+                                    <TextView
+                                        android:id="@+id/teleponHasilScanBarcode"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        android:ellipsize="end"
+                                        android:text="082121423512"
+                                        android:textColor="#000000"
+                                        android:textSize="@dimen/textContainsDataQrCode" />
+                                </RelativeLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                android:orientation="horizontal"
+                                android:weightSum="5">
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="email"
+                                        android:textColor="#000000"
+                                        android:textSize="@dimen/textContainsDataQrCode" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="0.2">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text=":"
+                                        android:textColor="#000000"
+                                        android:textSize="@dimen/textContainsDataQrCode" />
+                                </RelativeLayout>
+
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="3.8">
+
+                                    <TextView
+                                        android:id="@+id/emailHasilScanBarcode"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:singleLine="true"
+                                        android:ellipsize="end"
+                                        android:text="DoniBambang@gmail.com"
+                                        android:textColor="#000000"
+                                        android:textSize="@dimen/textContainsDataQrCode" />
+                                </RelativeLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="0.5" />
+                    </LinearLayout>
+                    <!--<LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="3.5"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:weightSum="5">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent">
+
+                        </LinearLayout>
+                    </LinearLayout>-->
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.5">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="E-kupon yang akan diberikan sebanyak"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/textJudulKuponQrCode"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="5">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/conventi" />
+
+                <TextView
+                    android:id="@+id/jumlahKuponHasilScanBarcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="10"
+                    android:textColor="#f1b027"
+                    android:textSize="@dimen/textJumlahKupon"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:text="lembar"
+                    android:textColor="#000000"
+                    android:textSize="@dimen/textJudulKuponQrCode"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="2"
+        android:background="#f0f0f0"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <RelativeLayout
+                android:id="@+id/btnHomeBerhasilQrCode"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/gambarHome"
+                        android:layout_width="@dimen/gambarTombolUtama"
+                        android:layout_height="@dimen/gambarTombolUtama"
+                        android:src="@drawable/home_grey" />
+
+                    <TextView
+                        android:id="@+id/textGambarHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="home"
+                        android:textColor="#FF5F5D5D"
+                        android:textSize="@dimen/textTombolUtama" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <RelativeLayout
+                android:id="@+id/btnLogout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/gambarLogout"
+                        android:layout_width="@dimen/gambarTombolUtama"
+                        android:layout_height="@dimen/gambarTombolUtama"
+                        android:src="@drawable/logout_grey" />
+
+                    <TextView
+                        android:id="@+id/textGambarLogout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="logout"
+                        android:textColor="#FF5F5D5D"
+                        android:textSize="@dimen/textTombolUtama" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

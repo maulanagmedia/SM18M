@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            card_view:cardBackgroundColor="#ffffff"
+            card_view:cardCornerRadius="5dp"
+            card_view:cardElevation="4dp"
+            card_view:cardPreventCornerOverlap="false"
+            card_view:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:weightSum="10">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.5">
+
+                    <TextView
+                        android:id="@+id/tanggal_history_penjualan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:text=""
+                        android:textColor="#e40112"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2.75"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/email_history_penjualan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="#000000"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2.75"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jumlah E-Kupon"
+                        android:textSize="14dp" />
+
+                    <TextView
+                        android:id="@+id/jumlah_kupon_history_penjualan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="#000000"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2.75"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Total Belanja"
+                        android:textSize="14dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/total_belanja_history_penjualan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text=""
+                            android:textColor="#000000"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="18">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f6f6f6"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="9.4"
+                android:orientation="vertical"
+                android:weightSum="10">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="9.4"
+                    android:orientation="vertical"
+                    android:weightSum="10">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="4">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            card_view:cardBackgroundColor="#ffffff"
+                            card_view:cardCornerRadius="5dp"
+                            card_view:cardElevation="5dp"
+                            card_view:cardUseCompatPadding="true">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:paddingBottom="10dp"
+                                android:paddingLeft="20dp"
+                                android:paddingRight="20dp"
+                                android:paddingTop="10dp"
+                                android:weightSum="10">
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="1.5">
+
+                                    <TextView
+                                        android:id="@+id/tanggal_history_penjualan"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_alignParentRight="true"
+                                        android:layout_centerVertical="true"
+                                        android:text="21-03-2018"
+                                        android:textColor="#e40112"
+                                        android:textSize="14dp"
+                                        android:textStyle="bold" />
+                                </RelativeLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="2.75"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Email"
+                                        android:textSize="14dp" />
+
+                                    <TextView
+                                        android:id="@+id/email_history_penjualan"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="bayuw1995@gmail.com"
+                                        android:textColor="#000000"
+                                        android:textSize="16dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="2.75"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Jumlah E-Kupon"
+                                        android:textSize="14dp" />
+
+                                    <TextView
+                                        android:id="@+id/jumlah_kupon_history_penjualan"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="10"
+                                        android:textColor="#000000"
+                                        android:textSize="16dp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="0dp"
+                                    android:layout_weight="2.75"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Total Belanja"
+                                        android:textSize="14dp" />
+
+                                    <TextView
+                                        android:id="@+id/total_belanja_history_penjualan"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Rp 1.000.000"
+                                        android:textColor="#000000"
+                                        android:textSize="16dp" />
+                                </LinearLayout>
+                            </LinearLayout>
+
+
+                        </android.support.v7.widget.CardView>
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3" />
+        </LinearLayout>
+        &lt;!&ndash;<android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_history_penjualan"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v7.widget.RecyclerView>&ndash;&gt;
+    </LinearLayout>-->
+
+
+</LinearLayout>

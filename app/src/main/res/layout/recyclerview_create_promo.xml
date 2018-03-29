@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/viewDetailCreatePromo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:id="@+id/gambarCreatePromo"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/tambah_promo" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7">
+
+                <TextView
+                    android:id="@+id/judulCreatePromo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Promo kue coklat"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/deletePromo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerInParent="true"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/close" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="5dp"
+            android:background="#FF5F5D5D" />
+    </LinearLayout>
+</RelativeLayout>

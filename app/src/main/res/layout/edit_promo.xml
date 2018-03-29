@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutUtamaSettingPromo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="20">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:background="#e40112"
+        android:orientation="horizontal">
+
+        <RelativeLayout
+            android:id="@+id/backEditPromo"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:clickable="true">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/back" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="Edit Promo"
+                android:textColor="#FFFFFF"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutUtamaEditPromo"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="16"
+        android:orientation="horizontal"
+        android:weightSum="6">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama promo"
+                        android:textSize="@dimen/textSettingPromo" />
+
+                    <EditText
+                        android:id="@+id/titleEditPromo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-5dp"
+                        android:layout_marginTop="-15dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:hint="Promo Ulang Tahun"
+                        android:textColor="#000000"
+                        android:textColorHint="#50000000"
+                        android:textSize="@dimen/textEditTextSettingPromo" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="-10dp"
+                        android:background="#e40112" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="URL"
+                        android:textSize="@dimen/textSettingPromo" />
+
+                    <EditText
+                        android:id="@+id/urlEditPromo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="-5dp"
+                        android:layout_marginTop="-15dp"
+                        android:backgroundTint="@android:color/transparent"
+                        android:hint="URL Promo"
+                        android:textColor="#000000"
+                        android:textColorHint="#50000000"
+                        android:textSize="@dimen/textEditTextSettingPromo" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="-10dp"
+                        android:background="#e40112" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Keterangan"
+                        android:textSize="@dimen/textSettingPromo" />
+
+                    <EditText
+                        android:id="@+id/keteranganEditPromo"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:background="@drawable/background_keterangan_settingpromo"
+                        android:gravity="start"
+                        android:paddingLeft="5dp"
+                        android:textCursorDrawable="@null"
+                        android:textSize="@dimen/textEditTextSettingPromo" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Upload gambar" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:background="@drawable/background_keterangan_settingpromo">
+
+                        <ImageView
+                            android:id="@+id/showCameraEditPromo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                        <ImageView
+                            android:id="@+id/openCameraEditPromo"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:clickable="true"
+                            android:src="@mipmap/gallery" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <Button
+                        android:id="@+id/btnEditPromo"
+                        android:layout_width="@dimen/widthBtnSimpan"
+                        android:layout_height="@dimen/heightBtnSimpan"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/mbunderke_tombol_login"
+                        android:text="simpan"
+                        android:textAllCaps="false"
+                        android:textColor="#fcfdfd"
+                        android:textSize="@dimen/textBtnLogin" />
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentBottom="true"
+        android:layout_weight="2"
+        android:background="#f0f0f0"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <RelativeLayout
+                android:id="@+id/btnHomeCreatePromo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/gambarHome"
+                        android:layout_width="@dimen/gambarTombolUtama"
+                        android:layout_height="@dimen/gambarTombolUtama"
+                        android:src="@drawable/home_grey" />
+
+                    <TextView
+                        android:id="@+id/textGambarHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="home"
+                        android:textColor="#FF5F5D5D"
+                        android:textSize="@dimen/textTombolUtama" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:orientation="horizontal"
+            android:weightSum="3">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <RelativeLayout
+                android:id="@+id/btnLogout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/gambarLogout"
+                        android:layout_width="@dimen/gambarTombolUtama"
+                        android:layout_height="@dimen/gambarTombolUtama"
+                        android:src="@drawable/logout_grey" />
+
+                    <TextView
+                        android:id="@+id/textGambarLogout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="logout"
+                        android:textColor="#FF5F5D5D"
+                        android:textSize="@dimen/textTombolUtama" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

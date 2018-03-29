@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="120dp"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:weightSum="10"
+        android:background="@drawable/background_popup_logout">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="9"
+            android:orientation="vertical"
+            android:weightSum="2">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="0.2"
+                android:layout_height="0dp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.8">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="anda yakin ingin menghapus promo?"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#FF5F5D5D"/>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <RelativeLayout
+                    android:id="@+id/logoutYa"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_tombol_popup_logout">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="YA"
+                        android:textSize="20dp"
+                        android:textColor="#f1b027"/>
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/logoutTidak"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/background_tombol_popup_logout">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="TIDAK"
+                        android:textSize="20dp"
+                        android:textColor="#e40112"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5" />
+
+    </LinearLayout>
+</RelativeLayout>

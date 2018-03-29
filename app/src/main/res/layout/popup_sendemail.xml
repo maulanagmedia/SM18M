@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/layoutPopUp"
+        android:layout_width="300dp"
+        android:layout_height="450dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/background_popup_setting_kupon"
+        android:orientation="vertical"
+        android:weightSum="10">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"
+            android:background="@drawable/background_layoutkuning_setting_kupon"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.95"
+                android:background="@drawable/background_layoutmerah_setting_kupon">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="send email"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="7"
+            android:background="#FFFFFF"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:orientation="vertical"
+                android:weightSum="20">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Input email dan besaran nominal rupiah"
+                            android:textColor="#000000"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="per satu kupon"
+                            android:textColor="#000000"
+                            android:textSize="13dp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:orientation="vertical"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:text="Kepada"
+                        android:textSize="13dp" />
+
+                    <EditText
+                        android:id="@+id/isiEmailSendEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginLeft="-5dp"
+                        android:layout_marginTop="-5dp"
+                        android:layout_weight="3.4"
+                        android:backgroundTint="@android:color/transparent"
+                        android:hint="example@gmail.com"
+                        android:singleLine="true"
+                        android:textColor="#000000"
+                        android:textSize="15dp" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="-10dp"
+                        android:layout_weight="0.1"
+                        android:background="#e40112" />
+
+                </LinearLayout>
+
+                <RadioGroup
+                    android:id="@+id/radioGrubEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
+                    android:layout_marginLeft="-5dp"
+                    android:layout_marginTop="-10dp"
+                    android:weightSum="4.5">
+
+                    <RadioButton
+                        android:id="@+id/radio1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:checked="true"
+                        android:text="Tunai"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/radio2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:text="Non Tunai"
+                        android:textSize="14sp" />
+
+                    <RadioButton
+                        android:id="@+id/radio3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:text="YAP! BNI"
+                        android:textSize="14sp" />
+                </RadioGroup>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:orientation="vertical"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1.5"
+                        android:text="Input nominal"
+                        android:textSize="13dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="-5dp"
+                        android:layout_weight="3"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="5">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-3dp"
+                            android:layout_weight="0.4">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="Rp"
+                                android:textSize="15dp" />
+                        </RelativeLayout>
+
+                        <EditText
+                            android:id="@+id/isiNominalSendEMail"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="4.7"
+                            android:backgroundTint="@android:color/transparent"
+                            android:hint="50.000"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textColor="#000000"
+                            android:textSize="15dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="-10dp"
+                        android:layout_weight="0.1"
+                        android:background="#e40112" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2">
+
+                    <RelativeLayout
+                        android:id="@+id/btnSave"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:background="@drawable/background_tombol_popup_setting_kupon">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="Kirim"
+                            android:textColor="#e40112"
+                            android:textSize="14dp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/btnCancel"
+                        android:layout_width="70dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toLeftOf="@+id/btnSave"
+                        android:background="@drawable/background_tombol_popup_setting_kupon">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:text="Cancel"
+                            android:textSize="14dp" />
+                    </RelativeLayout>
+                </RelativeLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
