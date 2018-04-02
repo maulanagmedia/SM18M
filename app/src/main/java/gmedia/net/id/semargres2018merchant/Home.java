@@ -3,6 +3,7 @@ package gmedia.net.id.semargres2018merchant;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,20 +22,29 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import gmedia.net.id.semargres2018merchant.Utils.OptionItem;
 
 public class Home extends RuntimePermissionsActivity {
     private boolean doubleBackToExitPressedOnce = false;
@@ -53,9 +63,12 @@ public class Home extends RuntimePermissionsActivity {
     private Activity activity;
     private RadioGroup radioGroupScanBarcode, radioGroupEmail;
     private RadioButton radioButtonScanBarcode,radioButtonEmail;
-    private int IDscanBarcode = 0, IDemail = 0;
+    private String IDscanBarcode = "0", IDemail = "0";
     String version = "", latestVersion="",link="";
     String settingKupon = "";
+    private ProgressDialog progressDialog;
+    private List<OptionItem> caraBayarList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +79,7 @@ public class Home extends RuntimePermissionsActivity {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.statusbar));
         }
-        prepareDataDashboard();
+
         totalPenjualan = findViewById(R.id.totalPenjualan);
         sisaKupon = findViewById(R.id.sisaKupon);
         settinganKupon = findViewById(R.id.settinganKupon);
@@ -137,11 +150,18 @@ public class Home extends RuntimePermissionsActivity {
                 dialog.setContentView(R.layout.popup_setting_kupon);
                 isiSettingKupon = dialog.findViewById(R.id.isiSettingKupon);
                 isiSettingKupon.setText(settingKupon);
+                //if(settingKupon!= null && settingKupon.length() > 0) isiSettingKupon.setSelection(settinganKupon.length() - 1);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 RelativeLayout btnSave = dialog.findViewById(R.id.btnSave);
                 btnSave.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        if(isiSettingKupon.getText().toString().equals("")){
+                            isiSettingKupon.setError("Nominal harap diisi");
+                            isiSettingKupon.requestFocus();
+                            return;
+                        }
                         prepareDataSettingKupon();
                         dialog.dismiss();
                     }
@@ -161,92 +181,16 @@ public class Home extends RuntimePermissionsActivity {
         menuScanBarcode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Dialog dialog = new Dialog(Home.this);
-                dialog.setContentView(R.layout.popup_scan_barcode);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                isiSettingTotalBelanja = dialog.findViewById(R.id.isiSettingTotalBelanja);
-                radioGroupScanBarcode = dialog.findViewById(R.id.radioGrubScanBarcode);
-                /*final LinearLayout utama = dialog.findViewById(R.id.layoutPopUpScanBarcode);
-                utama.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        HideKeyboard.hideSoftKeyboard(dialog.getOwnerActivity());
-                    }
-                });*/
-                RelativeLayout btnSave = dialog.findViewById(R.id.btnSave);
-                btnSave.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int selectedID = radioGroupScanBarcode.getCheckedRadioButtonId();
-                        radioButtonScanBarcode = dialog.findViewById(selectedID);
-                        if (radioButtonScanBarcode.getText().equals("Tunai")){
-                            IDscanBarcode = 0;
-                        }
-                        else if (radioButtonScanBarcode.getText().equals("Non Tunai")){
-                            IDscanBarcode = 1;
-                        }
-                        else if (radioButtonScanBarcode.getText().equals("YAP BNI")){
-                            IDscanBarcode = 2;
-                        }
-//                        Toast.makeText(getApplicationContext(),""+ID,Toast.LENGTH_LONG).show();
-                        if (!isiSettingTotalBelanja.getText().toString().equals("")) {
-                            openScanBarcode();
-                            dialog.dismiss();
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Silahkan Isi Total Belanja", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-                RelativeLayout btnCancel = dialog.findViewById(R.id.btnCancel);
-                btnCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-                dialog.setCanceledOnTouchOutside(false);
-                dialog.show();
+
+                getCaraBayarData(0);
             }
         });
         LinearLayout menuEmail = findViewById(R.id.menuEmail);
         menuEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Dialog dialog = new Dialog(Home.this);
-                dialog.setContentView(R.layout.popup_sendemail);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                radioGroupEmail = dialog.findViewById(R.id.radioGrubEmail);
-                isiEmailSendEmail = dialog.findViewById(R.id.isiEmailSendEmail);
-                isiNominalSendEMail = dialog.findViewById(R.id.isiNominalSendEMail);
-                RelativeLayout btnSave = dialog.findViewById(R.id.btnSave);
-                btnSave.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int selectedIDemail = radioGroupEmail.getCheckedRadioButtonId();
-                        radioButtonEmail = dialog.findViewById(selectedIDemail);
-                        if (radioButtonEmail.getText().equals("Tunai")){
-                            IDemail = 0;
-                        }
-                        else if (radioButtonEmail.getText().equals("Non Tunai")){
-                            IDemail = 1;
-                        }
-                        else if (radioButtonEmail.getText().equals("YAP BNI")){
-                            IDemail = 2;
-                        }
-//                        Toast.makeText(getApplicationContext(),String.valueOf(IDemail),Toast.LENGTH_LONG).show();
-                        prepareDataSendEmail();
-                        dialog.dismiss();
-                    }
-                });
-                RelativeLayout btnCancel = dialog.findViewById(R.id.btnCancel);
-                btnCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-                dialog.setCanceledOnTouchOutside(false);
-                dialog.show();
+
+                getCaraBayarData(1);
             }
         });
         LinearLayout menuProfile = findViewById(R.id.menuProfile);
@@ -320,6 +264,25 @@ public class Home extends RuntimePermissionsActivity {
                 OK.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        if(passLama.getText().toString().equals("")){
+                            passLama.setError("Harap diisi");
+                            passLama.requestFocus();
+                            return;
+                        }
+
+                        if(passBaru.getText().toString().equals("")){
+                            passBaru.setError("Harap diisi");
+                            passBaru.requestFocus();
+                            return;
+                        }
+
+                        if(rePassBaru.getText().toString().equals("")){
+                            rePassBaru.setError("Harap diisi");
+                            rePassBaru.requestFocus();
+                            return;
+                        }
+
                         prepareDataGantiPassword();
                         dialog.dismiss();
                     }
@@ -357,10 +320,169 @@ public class Home extends RuntimePermissionsActivity {
         });
     }
 
+    private void getCaraBayarData(final int jenis) {
+
+        // 0. barcode, 1. by email
+
+        ApiVolley requestApiVolley = new ApiVolley(this, new JSONObject(), "GET", URL.urlCaraBayar, "", "", 0, new ApiVolley.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONObject object = new JSONObject(result);
+                    String status = object.getJSONObject("metadata").getString("status");
+                    caraBayarList = new ArrayList<>();
+
+                    if (status.equals("200")){
+
+                        JSONArray jArray = object.getJSONArray("response");
+                        for(int i = 0 ; i < jArray.length();i++){
+
+                            JSONObject jo = jArray.getJSONObject(i);
+                            caraBayarList.add(new OptionItem(jo.getString("value"), jo.getString("text")));
+                        }
+
+                        if(jenis == 0 && caraBayarList.size() > 0){
+
+                            showScanBarcodeTransactionDialog(caraBayarList);
+                        }else if (jenis == 1 && caraBayarList.size() > 0){
+
+                            showByEmailTrans(caraBayarList);
+                        }
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(),status,Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onError(String result) {
+                Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data", Toast.LENGTH_LONG).show();
+            }
+        });
+
+
+
+    }
+
+    private void showScanBarcodeTransactionDialog(List<OptionItem> listItem){
+
+        final Dialog dialog = new Dialog(Home.this);
+        dialog.setContentView(R.layout.popup_scan_barcode);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        isiSettingTotalBelanja = dialog.findViewById(R.id.isiSettingTotalBelanja);
+        //radioGroupScanBarcode = dialog.findViewById(R.id.radioGrubScanBarcode);
+        final Spinner spCaraBayarBarcode = (Spinner) dialog.findViewById(R.id.sp_cara_bayar_barcode);
+        ArrayAdapter adapter = new ArrayAdapter(Home.this, R.layout.layout_simple_list, listItem);
+        spCaraBayarBarcode.setAdapter(adapter);
+        spCaraBayarBarcode.setSelection(0, true);
+
+        RelativeLayout btnSave = dialog.findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                IDscanBarcode = "0";
+                OptionItem item = (OptionItem) spCaraBayarBarcode.getSelectedItem();
+                IDscanBarcode = item.getItem1();
+
+                if (!isiSettingTotalBelanja.getText().toString().equals("")) {
+                    openScanBarcode();
+                    dialog.dismiss();
+                } else {
+                    //Toast.makeText(getApplicationContext(), "", Toast.LENGTH_LONG).show();
+                    isiSettingTotalBelanja.setError("Silahkan isi nominal belanja");
+                    isiSettingTotalBelanja.requestFocus();
+                    return;
+                }
+            }
+        });
+        RelativeLayout btnCancel = dialog.findViewById(R.id.btnCancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+    }
+
+    private void showByEmailTrans(List<OptionItem> listItem){
+
+        final Dialog dialog = new Dialog(Home.this);
+        dialog.setContentView(R.layout.popup_sendemail);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        // radioGroupEmail = dialog.findViewById(R.id.radioGrubEmail);
+        isiEmailSendEmail = dialog.findViewById(R.id.isiEmailSendEmail);
+        isiNominalSendEMail = dialog.findViewById(R.id.isiNominalSendEMail);
+
+        final Spinner spCaraBayarEmail = (Spinner) dialog.findViewById(R.id.sp_cara_bayar_email);
+        ArrayAdapter adapter = new ArrayAdapter(Home.this, R.layout.layout_simple_list, listItem);
+        spCaraBayarEmail.setAdapter(adapter);
+        spCaraBayarEmail.setSelection(0, true);
+
+        RelativeLayout btnSave = dialog.findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(isiEmailSendEmail.getText().toString().equals("")){
+                    isiEmailSendEmail.setError("Silahkan mengisi email");
+                    isiEmailSendEmail.requestFocus();
+                    return;
+                }
+
+                if(isiNominalSendEMail.getText().toString().equals("")){
+                    isiNominalSendEMail.setError("Silahkan mengisi nominal belanja");
+                    isiNominalSendEMail.requestFocus();
+                    return;
+                }
+
+                IDemail = "0";
+                OptionItem item = (OptionItem) spCaraBayarEmail.getSelectedItem();
+                IDemail = item.getItem1();
+
+//                        Toast.makeText(getApplicationContext(),String.valueOf(IDemail),Toast.LENGTH_LONG).show();
+                prepareDataSendEmail();
+                dialog.dismiss();
+
+            }
+        });
+        RelativeLayout btnCancel = dialog.findViewById(R.id.btnCancel);
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+
+    }
+
+    private void showProgressDialog(){
+        progressDialog = new ProgressDialog(Home.this,
+                R.style.AppTheme_Custom_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        progressDialog.setMessage("Memproses...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+
+    private void dismissProgressDialog(){
+        if(progressDialog != null){
+            progressDialog.dismiss();
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         checkVersion();
+        prepareDataDashboard();
 
     }
     private void checkVersion(){
@@ -430,7 +552,8 @@ public class Home extends RuntimePermissionsActivity {
                 try {
                     JSONObject object = new JSONObject(result);
                     String status = object.getJSONObject("metadata").getString("message");
-                    if (status.equals("Success!")){
+                    String statusJson = object.getJSONObject("metadata").getString("status");
+                    if (statusJson.equals("200")){
                         JSONObject isi = object.getJSONObject("response");
                         FormatRupiah request = new FormatRupiah();
                         totalPenjualan.setText(request.ChangeToRupiahFormat(isi.getString("total_transaksi")));
@@ -459,6 +582,8 @@ public class Home extends RuntimePermissionsActivity {
     }
 
     private void prepareDataGantiPassword() {
+
+        showProgressDialog();
         final JSONObject jBody = new JSONObject();
         try {
             jBody.put("password_lama", passLama.getText());
@@ -470,6 +595,8 @@ public class Home extends RuntimePermissionsActivity {
         ApiVolley request = new ApiVolley(this, jBody, "POST", URL.urlGantiPassword, "", "", 0, new ApiVolley.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
+
+                dismissProgressDialog();
                 try {
                     JSONObject object = new JSONObject(result);
                     String pesan = object.getJSONObject("metadata").getString("message");
@@ -487,11 +614,14 @@ public class Home extends RuntimePermissionsActivity {
             @Override
             public void onError(String result) {
                 Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data", Toast.LENGTH_LONG).show();
+                dismissProgressDialog();
             }
         });
     }
 
     private void prepareDataSendEmail() {
+
+        showProgressDialog();
         final JSONObject jBody = new JSONObject();
         try {
             jBody.put("kepada", isiEmailSendEmail.getText());
@@ -503,6 +633,8 @@ public class Home extends RuntimePermissionsActivity {
         ApiVolley request = new ApiVolley(this, jBody, "POST", URL.urlSendEmail, "", "", 0, new ApiVolley.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
+
+                dismissProgressDialog();
                 try {
                     JSONObject object = new JSONObject(result);
                     final String status = object.getJSONObject("response").getString("status");
@@ -517,16 +649,21 @@ public class Home extends RuntimePermissionsActivity {
                     e.printStackTrace();
                 }
 
+                prepareDataDashboard();
             }
 
             @Override
             public void onError(String result) {
                 Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data", Toast.LENGTH_LONG).show();
+                dismissProgressDialog();
+                prepareDataDashboard();
             }
         });
     }
 
     private void prepareDataSettingKupon() {
+
+        showProgressDialog();
         final JSONObject jBody = new JSONObject();
         try {
             jBody.put("kupon", isiSettingKupon.getText());
@@ -536,25 +673,31 @@ public class Home extends RuntimePermissionsActivity {
         ApiVolley request = new ApiVolley(this, jBody, "POST", URL.urlSettingKupon, "", "", 0, new ApiVolley.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
+
+                dismissProgressDialog();
                 try {
                     JSONObject object = new JSONObject(result);
                     final String status = object.getJSONObject("response").getString("status");
                     String message = object.getJSONObject("response").getString("message");
                     if (status.equals("1")) {
                         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-                        Intent i = new Intent(Home.this,Home.class);
+                        /*Intent i = new Intent(Home.this,Home.class);
                         startActivity(i);
-                        finish();
+                        finish();*/
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                prepareDataDashboard();
 
             }
 
             @Override
             public void onError(String result) {
                 Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data", Toast.LENGTH_LONG).show();
+                dismissProgressDialog();
+                prepareDataDashboard();
             }
         });
     }
@@ -567,9 +710,11 @@ public class Home extends RuntimePermissionsActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         resultScanBarcode = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
         if (resultScanBarcode != null) {
+
             if (resultScanBarcode.getContents() == null) {
-                Toast.makeText(getApplicationContext(), "gagal brooh", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "gagal brooh", Toast.LENGTH_LONG).show();
             } else {
 //                Toast.makeText(getApplicationContext(),resultScanBarcode.getContents(),Toast.LENGTH_LONG).show();
                 prepareDataScanBarcode();
@@ -581,17 +726,21 @@ public class Home extends RuntimePermissionsActivity {
     }
 
     private void prepareDataScanBarcode() {
+
+        showProgressDialog();
         final JSONObject jBody = new JSONObject();
         try {
             jBody.put("user_id", resultScanBarcode.getContents());
             jBody.put("total", isiSettingTotalBelanja.getText().toString());
-            jBody.put("cara_bayar",String.valueOf(IDscanBarcode));
+            jBody.put("cara_bayar", IDscanBarcode);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         ApiVolley request = new ApiVolley(this, jBody, "POST", URL.urlScanBarcode, "", "", 0, new ApiVolley.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
+
+                dismissProgressDialog();
                 try {
                     JSONObject object = new JSONObject(result);
                     final String status = object.getJSONObject("response").getString("status");
@@ -604,7 +753,7 @@ public class Home extends RuntimePermissionsActivity {
                         i.putExtra("email", detail.getString("email"));
                         i.putExtra("telpon", detail.getString("no_telp"));
                         i.putExtra("gambar", detail.getString("foto"));
-                        i.putExtra("jumlah_kupon", detail.getString("jumalah_kupon"));
+                        i.putExtra("jumlah_kupon", detail.getString("jumlah_kupon"));
                         startActivity(i);
                         finish();
                         isHome = false;
@@ -614,10 +763,14 @@ public class Home extends RuntimePermissionsActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                prepareDataDashboard();
             }
             @Override
             public void onError(String result) {
                 Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data", Toast.LENGTH_LONG).show();
+                dismissProgressDialog();
+                prepareDataDashboard();
             }
         });
     }

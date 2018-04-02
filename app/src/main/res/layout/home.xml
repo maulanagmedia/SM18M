@@ -74,10 +74,11 @@
                     android:background="@drawable/mbunderke_layout">
 
                     <LinearLayout
-                        android:layout_width="300dp"
+                        android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="40dp"
+                        android:layout_marginLeft="@dimen/margin_default"
+                        android:layout_marginRight="@dimen/margin_default"
                         android:gravity="center_vertical"
                         android:orientation="vertical"
                         android:weightSum="2">
@@ -86,6 +87,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="0.75"
+                            android:visibility="gone"
                             android:gravity="center_vertical"
                             android:orientation="horizontal">
 
@@ -163,13 +165,17 @@
                             android:orientation="horizontal">
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content">
+                                android:layout_width="0dp"
+                                android:layout_weight="0.45"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Sisa Kupon"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/textPenjualanDanSisaKupon"
                                     android:textStyle="bold" />
@@ -177,13 +183,12 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="2.5dp"
-                                android:layout_marginRight="2.5dp">
+                                android:layout_width="0dp"
+                                android:layout_weight="0.02"
+                                android:layout_height="wrap_content">
 
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text=":"
                                     android:textColor="#000000"
@@ -192,9 +197,11 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.53"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:paddingLeft="@dimen/margin_cute">
 
                                 <TextView
                                     android:id="@+id/sisaKupon"
@@ -203,12 +210,16 @@
                                     android:text=""
                                     android:textColor="#000000"
                                     android:textSize="@dimen/textPenjualanDanSisaKupon"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text=" Kupon"
+                                    android:text=" E-Kupon"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/textPenjualanDanSisaKupon"
                                     android:textStyle="bold" />
@@ -223,13 +234,16 @@
                             android:orientation="horizontal">
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.45"
                                 android:layout_height="wrap_content">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Settingan Kupon"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/textPenjualanDanSisaKupon"
                                     android:textStyle="bold" />
@@ -237,30 +251,35 @@
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="2.5dp"
-                                android:layout_marginRight="2.5dp">
+                                android:layout_width="0dp"
+                                android:layout_weight="0.02"
+                                android:layout_height="wrap_content">
 
                                 <TextView
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:text=":"
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/textPenjualanDanSisaKupon"
                                     android:textStyle="bold" />
                             </LinearLayout>
 
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.53"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal">
+                                android:orientation="horizontal"
+                                android:paddingLeft="@dimen/margin_cute">
 
                                 <TextView
                                     android:id="@+id/settinganKupon"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text=""
+                                    android:singleLine="true"
+                                    android:ellipsize="end"
                                     android:textColor="#000000"
                                     android:textSize="@dimen/textPenjualanDanSisaKupon"
                                     android:textStyle="bold" />
@@ -298,7 +317,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="profile merchant"
+                        android:text="Profile Merchant"
                         android:textColor="#000000"
                         android:textSize="@dimen/textMenuUtama" />
                 </LinearLayout>
@@ -319,7 +338,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="create promo"
+                        android:text="Create Promo"
                         android:textColor="#000000"
                         android:textSize="@dimen/textMenuUtama" />
                 </LinearLayout>
@@ -348,7 +367,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="scan QR"
+                        android:text="Scan QR"
                         android:textColor="#000000"
                         android:textSize="@dimen/textMenuUtama" />
                 </LinearLayout>
@@ -369,7 +388,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="by email"
+                        android:text="By Email"
                         android:textColor="#000000"
                         android:textSize="@dimen/textMenuUtama" />
                 </LinearLayout>
@@ -398,7 +417,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="setting kupon"
+                        android:text="Setting E-Kupon"
                         android:textColor="#000000"
                         android:textSize="@dimen/textMenuUtama" />
                 </LinearLayout>
@@ -418,7 +437,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="info penjualan"
+                        android:text="Info Penjualan"
                         android:textColor="#000000"
                         android:textSize="@dimen/textMenuUtama" />
                 </LinearLayout>

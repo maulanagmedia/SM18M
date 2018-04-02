@@ -23,12 +23,14 @@ public class RecyclerViewHistoryPenjualan extends RecyclerView.Adapter<RecyclerV
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tanggal, email, jumlah_kupon, total_belanja;
+        private TextView tanggal, email, jumlah_kupon, total_belanja, tvNama, tvJam;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tanggal = itemView.findViewById(R.id.tanggal_history_penjualan);
             email = itemView.findViewById(R.id.email_history_penjualan);
+            tvNama = itemView.findViewById(R.id.tv_nama);
+            tvJam = itemView.findViewById(R.id.tv_jam);
             jumlah_kupon = itemView.findViewById(R.id.jumlah_kupon_history_penjualan);
             total_belanja = itemView.findViewById(R.id.total_belanja_history_penjualan);
         }
@@ -45,10 +47,14 @@ public class RecyclerViewHistoryPenjualan extends RecyclerView.Adapter<RecyclerV
 
     @Override
     public void onBindViewHolder(RecyclerViewHistoryPenjualan.ViewHolder holder, int position) {
+
+        CustomRecyclerViewHistoryPenjualan item = rvData.get(position);
         holder.tanggal.setText(rvData.get(position).getTanggal());
         holder.email.setText(rvData.get(position).getEmail());
         holder.jumlah_kupon.setText(rvData.get(position).getJumlah_kupon());
         holder.total_belanja.setText(rvData.get(position).getTotal_belanja());
+        holder.tvNama.setText(item.getNama());
+        holder.tvJam.setText(item.getTime());
     }
 
 

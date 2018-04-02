@@ -5,4 +5,13 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="margin_default">16dp</dimen>
+    <dimen name="margin_medium">12dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_tiny">4dp</dimen>
+    <dimen name="margin_cute">2dp</dimen>
+    <dimen name="default_line">0.8dp</dimen>
+    <dimen name="default_scrollbar">0.4dp</dimen>
+    <dimen name="default_label">12sp</dimen>
 </resources>

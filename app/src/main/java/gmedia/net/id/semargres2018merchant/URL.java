@@ -6,7 +6,7 @@ package gmedia.net.id.semargres2018merchant;
 
 public class URL {
 
-    private static final String baseURL = "http://semargres.gmedia.id/";
+    private static final String baseURL = "https://semargres.gmedia.id/";
     public static String urlLogin = baseURL + "merchant/auth";
     public static String urlProfile = baseURL + "merchant/profile";
     public static String urlSettingKupon = baseURL + "merchant/kupon";
@@ -22,5 +22,6 @@ public class URL {
     public static String urlEditPromo = baseURL + "merchant/view_promo/";
     public static String urlDeletePromo = baseURL + "merchant/delete_promo";
     public static String urlResetPassword = baseURL + "merchant/reset";
+    public static String urlCaraBayar = baseURL + "merchant/cara_bayar";
     public static String urlCheckVersion = baseURL + "latest_version/merchant";
 }

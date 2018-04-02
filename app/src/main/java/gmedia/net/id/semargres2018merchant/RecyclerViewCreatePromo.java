@@ -2,6 +2,7 @@ package gmedia.net.id.semargres2018merchant;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -36,6 +37,8 @@ import java.util.ArrayList;
 public class RecyclerViewCreatePromo extends RecyclerView.Adapter<RecyclerViewCreatePromo.ViewHolder> {
     public static ArrayList<CustomRecyclerViewCreatePromo> rvData;
     private Context context;
+    private ProgressDialog progressDialog;
+
     public RecyclerViewCreatePromo(Context context, ArrayList<CustomRecyclerViewCreatePromo> rvData) {
         this.context = context;
         this.rvData = rvData;
@@ -120,9 +123,13 @@ public class RecyclerViewCreatePromo extends RecyclerView.Adapter<RecyclerViewCr
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
+                        showProgressDialog();
                         ApiVolley request = new ApiVolley(context, jBody, "POST", URL.urlDeletePromo, "", "", 0, new ApiVolley.VolleyCallback() {
                             @Override
                             public void onSuccess(String result) {
+
+                                dismissProgressDialog();
                                 try {
                                     JSONObject object = new JSONObject(result);
                                     final String status = object.getJSONObject("response").getString("status");
@@ -144,6 +151,7 @@ public class RecyclerViewCreatePromo extends RecyclerView.Adapter<RecyclerViewCr
                             @Override
                             public void onError(String result) {
                                 Toast.makeText(context, "Terjadi kesalahan saat memuat data", Toast.LENGTH_LONG).show();
+                                dismissProgressDialog();
                             }
                         });
                     }
@@ -160,6 +168,22 @@ public class RecyclerViewCreatePromo extends RecyclerView.Adapter<RecyclerViewCr
             }
         });
 
+    }
+
+    private void showProgressDialog(){
+        progressDialog = new ProgressDialog(context,
+                R.style.AppTheme_Custom_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        progressDialog.setMessage("Menghapus...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+
+    private void dismissProgressDialog(){
+        if(progressDialog != null){
+            progressDialog.dismiss();
+        }
     }
 
     @Override

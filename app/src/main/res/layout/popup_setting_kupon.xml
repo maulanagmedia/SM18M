@@ -30,7 +30,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:text="setting kupon"
+                    android:text="Setting E-Kupon"
                     android:textColor="#FFFFFF"
                     android:textSize="20dp"
                     android:textStyle="bold" />
@@ -80,7 +80,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="per satu kupon"
+                            android:text="per satu e-kupon"
                             android:textColor="#000000"
                             android:textSize="13dp"
                             android:textStyle="bold" />
@@ -98,7 +98,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1.5"
-                        android:text="Input nominal"
+                        android:textColor="@color/color_black"
+                        android:text="Nominal Rupiah"
                         android:textSize="13dp" />
 
                     <LinearLayout

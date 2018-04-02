@@ -2,6 +2,7 @@ package gmedia.net.id.semargres2018merchant;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -18,10 +19,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -39,36 +42,51 @@ public class EditPromo extends AppCompatActivity {
     Button simpan;
     Bitmap photo,bitmap;
     String linkID;
+    private ProgressDialog progressDialog;
+    private LinearLayout utama;
+    private RelativeLayout back;
+    private RelativeLayout home;
+    private RelativeLayout logout;
+    private String bitmapString = "";
+    private ProgressBar pbLoading;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_promo);
+
         if (android.os.Build.VERSION.SDK_INT >= 21) {
             Window window = this.getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.statusbar));
         }
-        LinearLayout utama = findViewById(R.id.layoutUtamaEditPromo);
+
+        utama = (LinearLayout) findViewById(R.id.layoutUtamaEditPromo);
         utama.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 HideKeyboard.hideSoftKeyboard(EditPromo.this);
             }
         });
-        RelativeLayout back = findViewById(R.id.backEditPromo);
+
+        back = (RelativeLayout) findViewById(R.id.backEditPromo);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
-        RelativeLayout home = findViewById(R.id.btnHomeCreatePromo);
-        RelativeLayout logout = findViewById(R.id.btnLogout);
+
+        pbLoading = (ProgressBar) findViewById(R.id.pb_loading);
+
+        home = (RelativeLayout) findViewById(R.id.btnHomeCreatePromo);
+        logout = (RelativeLayout) findViewById(R.id.btnLogout);
         final ImageView gbrHome = findViewById(R.id.gambarHome);
         final ImageView gbrLogout = findViewById(R.id.gambarLogout);
         final TextView txtGbrHome = findViewById(R.id.textGambarHome);
         final TextView txtGbrLogout = findViewById(R.id.textGambarLogout);
+
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,12 +128,14 @@ public class EditPromo extends AppCompatActivity {
                 dialog.show();
             }
         });
+
         title = findViewById(R.id.titleEditPromo);
         link = findViewById(R.id.urlEditPromo);
         keterangan = findViewById(R.id.keteranganEditPromo);
 //        gambar = findViewById(R.id.showCameraEditPromo);
         showCamera = findViewById(R.id.showCameraEditPromo);
         openCamera = findViewById(R.id.openCameraEditPromo);
+
         openCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -125,12 +145,19 @@ public class EditPromo extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
             }
         });
+
         prepareDataEditPromo();
+
         simpan = findViewById(R.id.btnEditPromo);
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                prepareEditPromo();
+                if(!bitmapString.equals("")){
+                    prepareEditPromo();
+                }else{
+                    Toast.makeText(EditPromo.this, "Harap pilih gambar terlebih dahulu", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
     }
@@ -152,28 +179,37 @@ public class EditPromo extends AppCompatActivity {
             Bitmap reziseBitmap = Bitmap.createBitmap(photo,0,0,bitWidth,bitHeight,matrix,true);*/
             BitmapDrawable drawable = (BitmapDrawable) showCamera.getDrawable();
             bitmap = drawable.getBitmap();
+            bitmap = scaleDown(bitmap, 512, true);
+            bitmapString = bitmap != null ? EncodeBitmapToString.convert(bitmap) : "";
         }
     }
 
     private void prepareEditPromo() {
+
+        simpan.setEnabled(false);
+        showProgressDialog();
         Bundle save = getIntent().getExtras();
         if (save!=null){
             linkID = save.getString("id","");
         }
-        Bitmap bitmap = ((BitmapDrawable) showCamera.getDrawable()).getBitmap();
+
         final JSONObject jBody = new JSONObject();
         try {
             jBody.put("id", linkID);
             jBody.put("title", title.getText().toString());
             jBody.put("link", link.getText().toString());
-            jBody.put("gambar", EncodeBitmapToString.convert(bitmap));
+            jBody.put("gambar", bitmapString);
             jBody.put("keterangan", keterangan.getText().toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         ApiVolley request = new ApiVolley(this, jBody, "POST", URL.urlSettingPromo, "", "", 0, new ApiVolley.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
+
+                simpan.setEnabled(true);
+                dismissProgressDialog();
                 try {
                     JSONObject object = new JSONObject(result);
                     final String status = object.getJSONObject("response").getString("status");
@@ -183,30 +219,65 @@ public class EditPromo extends AppCompatActivity {
                         startActivity(intent);
                         finish();
                         Toast.makeText(getApplicationContext(),message,Toast.LENGTH_LONG).show();
-
+                    }else{
+                        Toast.makeText(getApplicationContext(), message,Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat menyimpan data, harap ulangi", Toast.LENGTH_LONG).show();
                 }
 
             }
 
             @Override
             public void onError(String result) {
-                Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data", Toast.LENGTH_LONG).show();
+                simpan.setEnabled(true);
+                dismissProgressDialog();
+                Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat menyimpan data, harap ulangi", Toast.LENGTH_LONG).show();
             }
         });
     }
 
+    private Bitmap scaleDown(Bitmap realImage, float maxImageSize,
+                             boolean filter) {
+        float ratio = Math.min(
+                (float) maxImageSize / realImage.getWidth(),
+                (float) maxImageSize / realImage.getHeight());
+        int width = Math.round((float) ratio * realImage.getWidth());
+        int height = Math.round((float) ratio * realImage.getHeight());
+
+        Bitmap newBitmap = Bitmap.createScaledBitmap(realImage, width,
+                height, filter);
+        return newBitmap;
+    }
+
     private void prepareDataEditPromo() {
+
         Bundle save = getIntent().getExtras();
         if (save!=null){
             title.setText(save.getString("title",""));
             link.setText(save.getString("link",""));
             keterangan.setText(save.getString("keterangan",""));
+            pbLoading.setVisibility(View.VISIBLE);
             Picasso.with(EditPromo.this).load(save.getString("gambar",""))
                     .networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE)
-                    .into(showCamera);
+                    .into(showCamera, new Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                            BitmapDrawable drawable = (BitmapDrawable) showCamera.getDrawable();
+                            bitmap = drawable.getBitmap();
+                            bitmap = scaleDown(bitmap, 512, true);
+                            bitmapString = bitmap != null ? EncodeBitmapToString.convert(bitmap) : "";
+                            pbLoading.setVisibility(View.GONE);
+                        }
+
+                        @Override
+                        public void onError() {
+                            pbLoading.setVisibility(View.GONE);
+                        }
+                    });
+
         }
     }
 
@@ -215,5 +286,22 @@ public class EditPromo extends AppCompatActivity {
         Intent i = new Intent(EditPromo.this,CreatePromo.class);
         startActivity(i);
         finish();
+        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+    }
+
+    private void showProgressDialog(){
+        progressDialog = new ProgressDialog(EditPromo.this,
+                R.style.AppTheme_Custom_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        progressDialog.setMessage("Menyimpan...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+
+    private void dismissProgressDialog(){
+        if(progressDialog != null){
+            progressDialog.dismiss();
+        }
     }
 }

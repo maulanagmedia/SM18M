@@ -126,5 +126,6 @@ public class BerhasilQrCode extends AppCompatActivity {
         Intent i = new Intent(BerhasilQrCode.this, Home.class);
         startActivity(i);
         finish();
+        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
     }
 }

@@ -16,7 +16,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Bayu on 22/03/2018.
@@ -112,7 +115,9 @@ public class HistoryPenjualan extends AppCompatActivity {
                                     isi.getString("tanggal"),
                                     isi.getString("email"),
                                     isi.getString("kupon"),
-                                    request.ChangeToRupiahFormat(isi.getString("total"))
+                                    request.ChangeToRupiahFormat(isi.getString("total")),
+                                    isi.getString("nama"),
+                                    ChangeFormatDateString(isi.getString("timestamp"), "yyyy-MM-dd HH:mm:ss", "HH:mm:ss")
                             ));
                         }
                         for (int i = start; i<count; i++){
@@ -148,6 +153,28 @@ public class HistoryPenjualan extends AppCompatActivity {
         });
     }
 
+    private String ChangeFormatDateString(String date, String formatDateFrom, String formatDateTo){
+
+        if(date != null && !date.equals("") && !date.equals(null)){
+
+            String result = date;
+            SimpleDateFormat sdf = new SimpleDateFormat(formatDateFrom);
+            SimpleDateFormat sdfCustom = new SimpleDateFormat(formatDateTo);
+
+            Date date1 = null;
+            try {
+                date1 = sdf.parse(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            return (sdfCustom.format(date1) == null) ? "" : sdfCustom.format(date1);
+        }else{
+            return "";
+        }
+
+    }
+
     /*private ArrayList<CustomRecyclerViewHistoryPenjualan> prepareDataHistoryPenjualan() {
             ArrayList<CustomRecyclerViewHistoryPenjualan> rvData = new ArrayList<>();
             for (int i = 0; i < tanggal.length; i++) {
@@ -166,7 +193,7 @@ public class HistoryPenjualan extends AppCompatActivity {
         Intent intent = new Intent(HistoryPenjualan.this,Home.class);
         startActivity(intent);
         finish();
+        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
     }
-
 
 }

@@ -1,6 +1,7 @@
 package gmedia.net.id.semargres2018merchant;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -33,6 +34,7 @@ public class Login extends AppCompatActivity {
     SessionManager session;
     EditText username, password, isianEmail;
     Boolean kliktovisible = true;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,6 +175,8 @@ public class Login extends AppCompatActivity {
     }
 
     private void loginRequest() {
+
+        showProgressDialog();
         final JSONObject jBody = new JSONObject();
         try {
             jBody.put("username", username.getText().toString());
@@ -183,6 +187,7 @@ public class Login extends AppCompatActivity {
         ApiVolley request = new ApiVolley(Login.this, jBody, "POST", URL.urlLogin, "", "", 0, new ApiVolley.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
+                dismissProgressDialog();
                 try {
                     JSONObject object = new JSONObject(result);
                     final String status = object.getJSONObject("response").getString("status");
@@ -233,8 +238,25 @@ public class Login extends AppCompatActivity {
             @Override
             public void onError(String result) {
                 Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data", Toast.LENGTH_LONG).show();
+                dismissProgressDialog();
             }
         });
+    }
+
+    private void showProgressDialog(){
+        progressDialog = new ProgressDialog(Login.this,
+                R.style.AppTheme_Custom_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        progressDialog.setMessage("Harap tunggu...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+
+    private void dismissProgressDialog(){
+        if(progressDialog != null){
+            progressDialog.dismiss();
+        }
     }
 
     @Override

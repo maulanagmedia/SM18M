@@ -5,13 +5,15 @@ package gmedia.net.id.semargres2018merchant;
  */
 
 class CustomRecyclerViewHistoryPenjualan {
-    private String tanggal, email, jumlah_kupon, total_belanja;
+    private String tanggal, email, jumlah_kupon, total_belanja, nama, time;
 
-    public CustomRecyclerViewHistoryPenjualan(String tanggal, String email, String jumlah_kupon, String total_belanja) {
+    public CustomRecyclerViewHistoryPenjualan(String tanggal, String email, String jumlah_kupon, String total_belanja, String nama, String time) {
         this.tanggal = tanggal;
         this.email = email;
         this.jumlah_kupon = jumlah_kupon;
         this.total_belanja = total_belanja;
+        this.nama = nama;
+        this.time = time;
     }
 
     public String getTanggal() {
@@ -45,5 +47,21 @@ class CustomRecyclerViewHistoryPenjualan {
 
     public void setTotal_belanja(String total_belanja) {
         this.total_belanja = total_belanja;
+    }
+
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

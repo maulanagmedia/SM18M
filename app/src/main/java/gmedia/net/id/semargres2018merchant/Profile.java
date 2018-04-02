@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -40,6 +41,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -71,6 +73,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -134,10 +137,17 @@ public class Profile extends AppCompatActivity implements LocationListener {
     Boolean posisi = true;
     ArrayAdapter<CustomKategori> adapter;
     float maxImageSize = 512;
+    private ProgressDialog progressDialog;
+    private Button simpan;
+    private String bitmapString = "";
+    private RelativeLayout utama;
+    private ProgressBar pbLoading;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
+
         nama = findViewById(R.id.isianNama);
         alamat = findViewById(R.id.isianAlamat);
         isianJamBuka = findViewById(R.id.isianJamBuka);
@@ -151,6 +161,8 @@ public class Profile extends AppCompatActivity implements LocationListener {
         foto = findViewById(R.id.showCameraProfile);
         showCamera = findViewById(R.id.showCameraProfile);
         openCamera = findViewById(R.id.openCameraProfile);
+        pbLoading = (ProgressBar) findViewById(R.id.pb_loading);
+
         session = new SessionManager(getApplicationContext());
         mvMap = (CustomMapView) findViewById(R.id.map);
         mvMap.onCreate(null);
@@ -167,7 +179,8 @@ public class Profile extends AppCompatActivity implements LocationListener {
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
             window.setStatusBarColor(this.getResources().getColor(R.color.statusbar));
         }
-        LinearLayout utama = findViewById(R.id.layoutUtamaProfile);
+
+        utama = (RelativeLayout) findViewById(R.id.layoutUtamaProfile);
         utama.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -324,11 +337,16 @@ public class Profile extends AppCompatActivity implements LocationListener {
         edtLatitude = findViewById(R.id.textLatitude);
         edtLongitude = findViewById(R.id.textLongitude);
         initLocation();
-        Button simpan = findViewById(R.id.btnProfile);
+        simpan = (Button) findViewById(R.id.btnProfile);
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                prepareCreateDataProfile();
+
+                if(!bitmapString.equals("")){
+                    prepareCreateDataProfile();
+                }else{
+                    Toast.makeText(Profile.this, "Harap pilih gambar terlebih dahulu", Toast.LENGTH_LONG).show();
+                }
                 /*Intent i = new Intent(Profile.this,Profile.class);
                 startActivity(i);
                 finish();*/
@@ -337,13 +355,15 @@ public class Profile extends AppCompatActivity implements LocationListener {
     }
 
     private void prepareCreateDataProfile() {
+
+        simpan.setEnabled(false);
+        showProgressDialog();
         CustomKategori customKategori = (CustomKategori) dropdown.getSelectedItem();
         String kategoriID = customKategori.getId();
-        bitmap = ((BitmapDrawable) showCamera.getDrawable()).getBitmap();
         final JSONObject jBody = new JSONObject();
         try {
             jBody.put("kategori", kategoriID);
-            jBody.put("foto", EncodeBitmapToString.convert(bitmap));
+            jBody.put("foto", bitmapString);
             jBody.put("nama", nama.getText().toString());
             jBody.put("alamat", alamat.getText().toString());
             jBody.put("jam_buka", isianJamBuka.getText());
@@ -359,6 +379,9 @@ public class Profile extends AppCompatActivity implements LocationListener {
         ApiVolley request = new ApiVolley(this, jBody, "POST", URL.urlEditProfile, "", "", 0, new ApiVolley.VolleyCallback() {
             @Override
             public void onSuccess(String result) {
+
+                simpan.setEnabled(true);
+                dismissProgressDialog();
                 try {
                     JSONObject object = new JSONObject(result);
                     final String status = object.getJSONObject("response").getString("status");
@@ -366,18 +389,53 @@ public class Profile extends AppCompatActivity implements LocationListener {
                     if (status.equals("1")) {
                         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                         prepareDataProfile();
+                    }else{
+                        Toast.makeText(getApplicationContext(), message,Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data, harap ulangi", Toast.LENGTH_LONG).show();
+
                 }
 
             }
 
             @Override
             public void onError(String result) {
-                Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data", Toast.LENGTH_LONG).show();
+                simpan.setEnabled(true);
+                dismissProgressDialog();
+                Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data, harap ulangi", Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    private Bitmap scaleDown(Bitmap realImage, float maxImageSize,
+                                   boolean filter) {
+        float ratio = Math.min(
+                (float) maxImageSize / realImage.getWidth(),
+                (float) maxImageSize / realImage.getHeight());
+        int width = Math.round((float) ratio * realImage.getWidth());
+        int height = Math.round((float) ratio * realImage.getHeight());
+
+        Bitmap newBitmap = Bitmap.createScaledBitmap(realImage, width,
+                height, filter);
+        return newBitmap;
+    }
+
+    private void showProgressDialog(){
+        progressDialog = new ProgressDialog(Profile.this,
+                R.style.AppTheme_Custom_Dialog);
+        progressDialog.setIndeterminate(true);
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        progressDialog.setMessage("Menyimpan...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
+
+    private void dismissProgressDialog(){
+        if(progressDialog != null){
+            progressDialog.dismiss();
+        }
     }
 
     private void prepareDataProfile() {
@@ -409,9 +467,27 @@ public class Profile extends AppCompatActivity implements LocationListener {
                         email.setText(object.getJSONObject("response").getString("email"));
                         facebook.setText(object.getJSONObject("response").getString("link_fb"));
                         instagram.setText(object.getJSONObject("response").getString("link_ig"));
+
+                        pbLoading.setVisibility(View.VISIBLE);
                         Picasso.with(Profile.this).load(object.getJSONObject("response").getString("foto"))
                                 .networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE)
-                                .into(showCamera);
+                                .into(showCamera, new Callback() {
+                                    @Override
+                                    public void onSuccess() {
+                                        BitmapDrawable drawable = (BitmapDrawable) showCamera.getDrawable();
+                                        bitmap = drawable.getBitmap();
+                                        bitmap = scaleDown(bitmap, 460, true);
+                                        bitmapString = bitmap != null ? EncodeBitmapToString.convert(bitmap) : "";
+                                        pbLoading.setVisibility(View.GONE);
+                                    }
+
+                                    @Override
+                                    public void onError() {
+
+                                        pbLoading.setVisibility(View.GONE);
+                                    }
+                                });
+
                         textLatitude.setText(isianlatitude);
                         textLongitude.setText(isianlongtitude);
                         if (isianlongtitude.length() > 0) {
@@ -622,6 +698,8 @@ public class Profile extends AppCompatActivity implements LocationListener {
 
             BitmapDrawable drawable = (BitmapDrawable) showCamera.getDrawable();
             bitmap = drawable.getBitmap();
+            bitmap = scaleDown(bitmap, 640, true);
+            bitmapString = bitmap != null ? EncodeBitmapToString.convert(bitmap) : "";
         }
     }
 
@@ -925,5 +1003,6 @@ public class Profile extends AppCompatActivity implements LocationListener {
         Intent intent = new Intent(Profile.this,Home.class);
         startActivity(intent);
         finish();
+        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
     }
 }
