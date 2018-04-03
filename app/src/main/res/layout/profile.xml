@@ -376,6 +376,38 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Handphone merchant"
+                    android:textColor="#000000"
+                    android:textSize="14dp" />
+
+                <EditText
+                    android:id="@+id/edt_handphone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="-5dp"
+                    android:layout_marginTop="-10dp"
+                    android:backgroundTint="@android:color/transparent"
+                    android:inputType="number"
+                    android:textColor="#000000"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="-10dp"
+                    android:background="#e30112"
+                    android:orientation="vertical" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Email merchant"
                     android:textColor="#000000"
                     android:textSize="14dp" />
@@ -420,6 +452,7 @@
                     android:backgroundTint="@android:color/transparent"
                     android:textColor="#000000"
                     android:textSize="20dp"
+                    android:hint="www.facebook.com/{merchant}"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -450,6 +483,7 @@
                     android:layout_marginTop="-10dp"
                     android:backgroundTint="@android:color/transparent"
                     android:textColor="#000000"
+                    android:hint="www.instagram.com/{merchant}"
                     android:textSize="20dp"
                     android:textStyle="bold" />
 

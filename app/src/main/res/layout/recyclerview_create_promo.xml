@@ -28,8 +28,7 @@
                     android:id="@+id/gambarCreatePromo"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginRight="10dp"
-                    android:src="@drawable/tambah_promo" />
+                    android:layout_marginRight="10dp"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -41,7 +40,7 @@
                     android:id="@+id/judulCreatePromo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Promo kue coklat"
+                    android:text=""
                     android:textColor="#000000"
                     android:textSize="15dp" />
             </RelativeLayout>

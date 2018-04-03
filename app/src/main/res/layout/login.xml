@@ -70,6 +70,7 @@
                         android:backgroundTint="@android:color/transparent"
                         android:gravity="bottom"
                         android:hint="Username"
+                        android:inputType="textEmailAddress"
                         android:singleLine="true"
                         android:textColor="#000000"
                         android:textColorHint="#50000000"

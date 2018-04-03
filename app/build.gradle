@@ -6,8 +6,8 @@ android {
         applicationId "gmedia.net.id.semargres2018merchant"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 7
-        versionName "7.0"
+        versionCode 10
+        versionName "10.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -34,6 +34,6 @@ dependencies {
     compile 'com.android.support:cardview-v7:26.1.0'
     compile 'com.android.support:recyclerview-v7:23.1.0'
     compile 'com.android.support:cardview-v7:23.1.0'
-
+    
 }
 //apply plugin: 'com.google.gms.google-services'

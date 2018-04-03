@@ -44,6 +44,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import gmedia.net.id.semargres2018merchant.NavTambahUser.MainTambahAkun;
 import gmedia.net.id.semargres2018merchant.Utils.OptionItem;
 
 public class Home extends RuntimePermissionsActivity {
@@ -68,6 +69,8 @@ public class Home extends RuntimePermissionsActivity {
     String settingKupon = "";
     private ProgressDialog progressDialog;
     private List<OptionItem> caraBayarList;
+    private LinearLayout llAdmin;
+    private LinearLayout llTambahAkun;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,6 +136,23 @@ public class Home extends RuntimePermissionsActivity {
                 dialog.show();
             }
         });
+
+        llAdmin = (LinearLayout) findViewById(R.id.ll_admin);
+        if(session.getFlag().equals("1")){
+            llAdmin.setVisibility(View.VISIBLE);
+        }
+
+        llTambahAkun = (LinearLayout) findViewById(R.id.ll_tambah_akun);
+
+        llTambahAkun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                isHome = false;
+                Intent i = new Intent(Home.this, MainTambahAkun.class);
+                startActivity(i);
+            }
+        });
+
         LinearLayout menuPromo = findViewById(R.id.menuPromo);
         menuPromo.setOnClickListener(new View.OnClickListener() {
             @Override

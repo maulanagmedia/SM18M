@@ -42,7 +42,6 @@ public class RecyclerViewCreatePromo extends RecyclerView.Adapter<RecyclerViewCr
     public RecyclerViewCreatePromo(Context context, ArrayList<CustomRecyclerViewCreatePromo> rvData) {
         this.context = context;
         this.rvData = rvData;
-
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -69,9 +68,24 @@ public class RecyclerViewCreatePromo extends RecyclerView.Adapter<RecyclerViewCr
 
     @Override
     public void onBindViewHolder(RecyclerViewCreatePromo.ViewHolder holder, final int position) {
+
         Picasso.with(context).load(rvData.get(position).getGambar())
                 .resize(256,256)
                 .transform(new CircleTransform()).into(holder.gambar);
+
+        CustomRecyclerViewCreatePromo selectedItem = rvData.get(position);
+
+        if(selectedItem.getStatus().toLowerCase().equals("verified")){
+
+            holder.judul.setTextColor(context.getResources().getColor(R.color.color_black));
+        }else if(selectedItem.getStatus().toLowerCase().equals("unverify")){
+
+            holder.judul.setTextColor(context.getResources().getColor(R.color.color_orange));
+        }else{
+
+            holder.judul.setTextColor(context.getResources().getColor(R.color.colorAccent));
+        }
+
         holder.judul.setText(rvData.get(position).getJudul());
         holder.detail.setOnClickListener(new View.OnClickListener() {
             @Override

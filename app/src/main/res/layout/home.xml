@@ -57,7 +57,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.5" />
+                android:layout_weight="0.3" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -166,14 +166,14 @@
 
                             <LinearLayout
                                 android:layout_width="0dp"
-                                android:layout_weight="0.45"
+                                android:layout_weight="0.5"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Sisa Kupon"
+                                    android:text="Sisa E-Kupon"
                                     android:singleLine="true"
                                     android:ellipsize="end"
                                     android:textColor="#000000"
@@ -198,7 +198,7 @@
 
                             <LinearLayout
                                 android:layout_width="0dp"
-                                android:layout_weight="0.53"
+                                android:layout_weight="0.48"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
                                 android:paddingLeft="@dimen/margin_cute">
@@ -235,13 +235,13 @@
 
                             <LinearLayout
                                 android:layout_width="0dp"
-                                android:layout_weight="0.45"
+                                android:layout_weight="0.5"
                                 android:layout_height="wrap_content">
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Settingan Kupon"
+                                    android:text="Settingan E-Kupon"
                                     android:singleLine="true"
                                     android:ellipsize="end"
                                     android:textColor="#000000"
@@ -268,7 +268,7 @@
 
                             <LinearLayout
                                 android:layout_width="0dp"
-                                android:layout_weight="0.53"
+                                android:layout_weight="0.48"
                                 android:layout_height="wrap_content"
                                 android:orientation="horizontal"
                                 android:paddingLeft="@dimen/margin_cute">
@@ -289,160 +289,207 @@
                 </RelativeLayout>
             </LinearLayout>
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="0.5" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.5"
-                android:orientation="horizontal"
-                android:weightSum="2">
+                android:layout_weight="8.2"
+                android:scrollbars="none">
 
                 <LinearLayout
-                    android:id="@+id/menuProfile"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/margin_small"
+                    android:paddingBottom="@dimen/margin_small"
                     android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="@dimen/gambarMenuUtama"
-                        android:layout_height="@dimen/gambarMenuUtama"
-                        android:src="@drawable/profile_mercant" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Profile Merchant"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/textMenuUtama" />
-                </LinearLayout>
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:weightSum="2">
 
-                <LinearLayout
-                    android:id="@+id/menuPromo"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/menuProfile"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="@dimen/gambarMenuUtama"
-                        android:layout_height="@dimen/gambarMenuUtama"
-                        android:src="@drawable/create_promo" />
+                            <ImageView
+                                android:layout_width="@dimen/gambarMenuUtama"
+                                android:layout_height="@dimen/gambarMenuUtama"
+                                android:src="@drawable/profile_mercant" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Profile Merchant"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/textMenuUtama" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/menuPromo"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/gambarMenuUtama"
+                                android:layout_height="@dimen/gambarMenuUtama"
+                                android:src="@drawable/create_promo" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Create Promo"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/textMenuUtama" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Create Promo"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/textMenuUtama" />
-                </LinearLayout>
-            </LinearLayout>
+                        android:orientation="horizontal"
+                        android:id="@+id/ll_admin"
+                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/margin_default"
+                        android:weightSum="2">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.5"
-                android:orientation="horizontal"
-                android:weightSum="2">
+                        <LinearLayout
+                            android:id="@+id/ll_tambah_akun"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
 
-                <LinearLayout
-                    android:id="@+id/menuscanbarcode"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                            <ImageView
+                                android:layout_width="@dimen/gambarMenuUtama"
+                                android:layout_height="@dimen/gambarMenuUtama"
+                                android:src="@drawable/ic_tambah_user" />
 
-                    <ImageView
-                        android:layout_width="@dimen/gambarMenuUtama"
-                        android:layout_height="@dimen/gambarMenuUtama"
-                        android:src="@drawable/scan_barcode" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tambah Akun"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/textMenuUtama" />
+                        </LinearLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:id="@+id/menuSettingKupon"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/gambarMenuUtama"
+                                android:layout_height="@dimen/gambarMenuUtama"
+                                android:src="@drawable/setting_promo" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Setting E-Kupon"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/textMenuUtama" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Scan QR"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/textMenuUtama" />
-                </LinearLayout>
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/margin_default"
+                        android:gravity="center"
+                        android:weightSum="2">
 
-                <LinearLayout
-                    android:id="@+id/menuEmail"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/menuscanbarcode"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
 
-                    <ImageView
-                        android:layout_width="@dimen/gambarMenuUtama"
-                        android:layout_height="@dimen/gambarMenuUtama"
-                        android:src="@drawable/email" />
+                            <ImageView
+                                android:layout_width="@dimen/gambarMenuUtama"
+                                android:layout_height="@dimen/gambarMenuUtama"
+                                android:paddingTop="@dimen/margin_tiny"
+                                android:paddingBottom="@dimen/margin_tiny"
+                                android:src="@drawable/scan_barcode" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Scan QR"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/textMenuUtama" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/menuEmail"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/gambarMenuUtama"
+                                android:layout_height="@dimen/gambarMenuUtama"
+                                android:src="@drawable/email" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="By Email"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/textMenuUtama" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="By Email"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/textMenuUtama" />
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/margin_default"
+                        android:weightSum="2">
+
+                        <LinearLayout
+                            android:id="@+id/menuInfoPenjualan"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="@dimen/gambarMenuUtama"
+                                android:layout_height="@dimen/gambarMenuUtama"
+                                android:src="@drawable/info_penjualan" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="History E-Kupon"
+                                android:textColor="#000000"
+                                android:textSize="@dimen/textMenuUtama" />
+                        </LinearLayout>
+
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2.5"
-                android:orientation="horizontal"
-                android:weightSum="2">
-
-                <LinearLayout
-                    android:id="@+id/menuSettingKupon"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="@dimen/gambarMenuUtama"
-                        android:layout_height="@dimen/gambarMenuUtama"
-                        android:src="@drawable/setting_promo" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Setting E-Kupon"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/textMenuUtama" />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/menuInfoPenjualan"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="@dimen/gambarMenuUtama"
-                        android:layout_height="@dimen/gambarMenuUtama"
-                        android:src="@drawable/info_penjualan" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Info Penjualan"
-                        android:textColor="#000000"
-                        android:textSize="@dimen/textMenuUtama" />
-                </LinearLayout>
-
-            </LinearLayout>
+            </ScrollView>
         </LinearLayout>
 
         <LinearLayout

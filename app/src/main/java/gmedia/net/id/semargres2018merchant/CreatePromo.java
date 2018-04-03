@@ -120,7 +120,8 @@ public class CreatePromo extends AppCompatActivity {
                             dataSet.add(new CustomRecyclerViewCreatePromo(
                                     isi.getString("id"),
                                     isi.getString("gambar"),
-                                    isi.getString("title")
+                                    isi.getString("title"),
+                                    isi.getString("status")
                             ));
                         }
                         rvView.setAdapter(null);

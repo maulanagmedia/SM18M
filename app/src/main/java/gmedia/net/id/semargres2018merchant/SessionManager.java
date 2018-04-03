@@ -43,6 +43,7 @@ public class SessionManager {
     // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "email";
     public static final String KEY_CHECK = "check";
+    public static final String KEY_FLAG = "flag";
 
     // Constructor
     public SessionManager(Context context){
@@ -56,7 +57,7 @@ public class SessionManager {
     /**
      * Create login session
      * */
-    public void createLoginSession(String name, String email, String token, String uid, String username){
+    public void createLoginSession(String name, String email, String token, String uid, String username, String flag){
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
@@ -69,6 +70,7 @@ public class SessionManager {
         editor.putString(KEY_TOKEN, token);
         editor.putString(KEY_UID, uid);
         editor.putString(KEY_USERNAME,username);
+        editor.putString(KEY_FLAG, flag);
 
         // commit changes
         editor.commit();
@@ -118,6 +120,9 @@ public class SessionManager {
     }
     public String getUsername(){
         return pref.getString(KEY_USERNAME,"");
+    }
+    public String getFlag(){
+        return pref.getString(KEY_FLAG,"");
     }
 
     /**

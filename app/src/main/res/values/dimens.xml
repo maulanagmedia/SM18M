@@ -14,4 +14,5 @@
     <dimen name="default_line">0.8dp</dimen>
     <dimen name="default_scrollbar">0.4dp</dimen>
     <dimen name="default_label">12sp</dimen>
+    <dimen name="default_box">16dp</dimen>
 </resources>

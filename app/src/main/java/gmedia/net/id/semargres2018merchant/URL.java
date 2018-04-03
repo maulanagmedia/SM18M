@@ -24,4 +24,7 @@ public class URL {
     public static String urlResetPassword = baseURL + "merchant/reset";
     public static String urlCaraBayar = baseURL + "merchant/cara_bayar";
     public static String urlCheckVersion = baseURL + "latest_version/merchant";
+    public static String urlDeleteAkun = baseURL + "merchant/delete_user";
+    public static String urlGetAkun = baseURL + "merchant/view_user";
+    public static String urlTambahAkun = baseURL + "merchant/create_user";
 }

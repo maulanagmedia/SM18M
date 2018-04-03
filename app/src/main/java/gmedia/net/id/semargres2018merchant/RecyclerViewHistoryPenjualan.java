@@ -23,7 +23,7 @@ public class RecyclerViewHistoryPenjualan extends RecyclerView.Adapter<RecyclerV
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView tanggal, email, jumlah_kupon, total_belanja, tvNama, tvJam;
+        private TextView tanggal, email, jumlah_kupon, total_belanja, tvNama, tvJam, tvPemberi;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -33,6 +33,7 @@ public class RecyclerViewHistoryPenjualan extends RecyclerView.Adapter<RecyclerV
             tvJam = itemView.findViewById(R.id.tv_jam);
             jumlah_kupon = itemView.findViewById(R.id.jumlah_kupon_history_penjualan);
             total_belanja = itemView.findViewById(R.id.total_belanja_history_penjualan);
+            tvPemberi = itemView.findViewById(R.id.tv_pemberi);
         }
     }
     public void addMoreData(){
@@ -55,6 +56,7 @@ public class RecyclerViewHistoryPenjualan extends RecyclerView.Adapter<RecyclerV
         holder.total_belanja.setText(rvData.get(position).getTotal_belanja());
         holder.tvNama.setText(item.getNama());
         holder.tvJam.setText(item.getTime());
+        holder.tvPemberi.setText(item.getUser());
     }
 
 

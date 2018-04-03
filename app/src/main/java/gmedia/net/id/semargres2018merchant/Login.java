@@ -195,7 +195,8 @@ public class Login extends AppCompatActivity {
                         String token = object.getJSONObject("response").getString("token");
                         String id = object.getJSONObject("response").getString("id");
                         String nama = object.getJSONObject("response").getString("username");
-                        session.createLoginSession("Bayu", "haii", token, id, nama);
+                        String flag = object.getJSONObject("response").getString("flag");
+                        session.createLoginSession(nama, nama, token, id, nama, flag);
                         Intent i = new Intent(Login.this, Home.class);
                         startActivity(i);
                         finish();

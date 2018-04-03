@@ -128,7 +128,7 @@ public class Profile extends AppCompatActivity implements LocationListener {
     SessionManager session;
     Spinner dropdown;
     private ArrayList<CustomKategori> kategori;
-    EditText nama, alamat, telpon, email, facebook, instagram;
+    EditText nama, alamat, telpon, edtHandphone , email, facebook, instagram;
     TextView textLatitude, textLongitude;
     TextView isianJamBuka, isianJamTutup;
     String isianlatitude, isianlongtitude;
@@ -153,6 +153,7 @@ public class Profile extends AppCompatActivity implements LocationListener {
         isianJamBuka = findViewById(R.id.isianJamBuka);
         isianJamTutup = findViewById(R.id.isianJamTutup);
         telpon = findViewById(R.id.isianTelpon);
+        edtHandphone = (EditText) findViewById(R.id.edt_handphone);
         email = findViewById(R.id.isianEmail);
         facebook = findViewById(R.id.isianFacebook);
         instagram = findViewById(R.id.isianInstagram);
@@ -338,15 +339,23 @@ public class Profile extends AppCompatActivity implements LocationListener {
         edtLongitude = findViewById(R.id.textLongitude);
         initLocation();
         simpan = (Button) findViewById(R.id.btnProfile);
+
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if(!bitmapString.equals("")){
-                    prepareCreateDataProfile();
+                if(session.getFlag().equals("2")){
+
+                    Toast.makeText(Profile.this, "Hanya pemilik yang dapat merubah profile merchant", Toast.LENGTH_LONG).show();
                 }else{
-                    Toast.makeText(Profile.this, "Harap pilih gambar terlebih dahulu", Toast.LENGTH_LONG).show();
+                    if(!bitmapString.equals("")){
+                        prepareCreateDataProfile();
+                    }else{
+                        Toast.makeText(Profile.this, "Harap pilih gambar terlebih dahulu", Toast.LENGTH_LONG).show();
+                    }
                 }
+
+
                 /*Intent i = new Intent(Profile.this,Profile.class);
                 startActivity(i);
                 finish();*/
@@ -369,6 +378,7 @@ public class Profile extends AppCompatActivity implements LocationListener {
             jBody.put("jam_buka", isianJamBuka.getText());
             jBody.put("jam_tutup", isianJamTutup.getText());
             jBody.put("notelp", telpon.getText().toString());
+            jBody.put("handphone", edtHandphone.getText().toString());
             jBody.put("link_fb", facebook.getText().toString());
             jBody.put("link_ig", instagram.getText().toString());
             jBody.put("latitude", textLatitude.getText().toString());
@@ -464,6 +474,7 @@ public class Profile extends AppCompatActivity implements LocationListener {
                         isianJamBuka.setText(object.getJSONObject("response").getString("jam_buka"));
                         isianJamTutup.setText(object.getJSONObject("response").getString("jam_tutup"));
                         telpon.setText(object.getJSONObject("response").getString("notelp"));
+                        edtHandphone.setText(object.getJSONObject("response").getString("hp"));
                         email.setText(object.getJSONObject("response").getString("email"));
                         facebook.setText(object.getJSONObject("response").getString("link_fb"));
                         instagram.setText(object.getJSONObject("response").getString("link_ig"));

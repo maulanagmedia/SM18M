@@ -5,12 +5,13 @@ package gmedia.net.id.semargres2018merchant;
  */
 
 public class CustomRecyclerViewCreatePromo {
-    private String id, gambar, judul;
+    private String id, gambar, judul, status;
 
-    public CustomRecyclerViewCreatePromo(String id, String gambar, String judul) {
+    public CustomRecyclerViewCreatePromo(String id, String gambar, String judul, String status) {
         this.id=id;
         this.gambar = gambar;
         this.judul = judul;
+        this.status = status;
     }
 
     public String getGambar() {
@@ -35,5 +36,13 @@ public class CustomRecyclerViewCreatePromo {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

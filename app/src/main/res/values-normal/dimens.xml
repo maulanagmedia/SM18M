@@ -5,8 +5,8 @@
     <dimen name="heightBtnLogin">50dp</dimen>
     <dimen name="textBtnLogin">20dp</dimen>
     <dimen name="textPenjualanDanSisaKupon">15dp</dimen>
-    <dimen name="gambarMenuUtama">70dp</dimen>
-    <dimen name="textMenuUtama">15dp</dimen>
+    <dimen name="gambarMenuUtama">55dp</dimen>
+    <dimen name="textMenuUtama">14sp</dimen>
     <dimen name="gambarTombolUtama">30dp</dimen>
     <dimen name="textTombolUtama">13dp</dimen>
     <dimen name="textSettingPromo">13dp</dimen>

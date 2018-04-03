@@ -117,7 +117,8 @@ public class HistoryPenjualan extends AppCompatActivity {
                                     isi.getString("kupon"),
                                     request.ChangeToRupiahFormat(isi.getString("total")),
                                     isi.getString("nama"),
-                                    ChangeFormatDateString(isi.getString("timestamp"), "yyyy-MM-dd HH:mm:ss", "HH:mm:ss")
+                                    ChangeFormatDateString(isi.getString("timestamp"), "yyyy-MM-dd HH:mm:ss", "HH:mm:ss"),
+                                    isi.getString("user")
                             ));
                         }
                         for (int i = start; i<count; i++){
