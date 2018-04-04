@@ -106,6 +106,7 @@ public class RecyclerViewCreatePromo extends RecyclerView.Adapter<RecyclerViewCr
                                     intent.putExtra("link",isi.getString("link"));
                                     intent.putExtra("keterangan", isi.getString("keterangan"));
                                     intent.putExtra("gambar",isi.getString("gambar"));
+                                    intent.putExtra("id_k",isi.getString("id_k"));
                                     ((Activity)context).startActivity(intent);
                                     ((Activity)context).finish();
                                 }

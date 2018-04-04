@@ -348,6 +348,16 @@ public class Profile extends AppCompatActivity implements LocationListener {
 
                     Toast.makeText(Profile.this, "Hanya pemilik yang dapat merubah profile merchant", Toast.LENGTH_LONG).show();
                 }else{
+
+                    if(textLatitude.getText().toString().length() == 0){
+
+                        refreshMode = true;
+                        updateAllLocation();
+
+                        Toast.makeText(Profile.this, "Pastikan Lokasi merchant diketahui", Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
                     if(!bitmapString.equals("")){
                         prepareCreateDataProfile();
                     }else{

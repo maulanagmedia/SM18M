@@ -111,8 +111,9 @@ public class CreatePromo extends AppCompatActivity {
                 dataSet = new ArrayList<>();
                 try {
                     JSONObject object = new JSONObject(result);
-                    String status = object.getJSONObject("metadata").getString("message");
-                    if (status.equals("Success!")) {
+                    String status = object.getJSONObject("metadata").getString("status");
+                    String message = object.getJSONObject("metadata").getString("message");
+                    if (status.equals("200")) {
 //                        Toast.makeText(getApplicationContext(),status,Toast.LENGTH_LONG).show();
                         JSONArray array = object.getJSONArray("response");
                         for (int i = 0; i < array.length(); i++) {
@@ -121,14 +122,15 @@ public class CreatePromo extends AppCompatActivity {
                                     isi.getString("id"),
                                     isi.getString("gambar"),
                                     isi.getString("title"),
-                                    isi.getString("status")
+                                    isi.getString("status"),
+                                    isi.getString("id_k")
                             ));
                         }
                         rvView.setAdapter(null);
                         adapter = new RecyclerViewCreatePromo(CreatePromo.this, dataSet);
                         rvView.setAdapter(adapter);
                     } else {
-                        Toast.makeText(getApplicationContext(), status, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

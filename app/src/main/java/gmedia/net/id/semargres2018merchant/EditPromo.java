@@ -15,12 +15,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,10 +31,12 @@ import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class EditPromo extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
@@ -49,6 +53,10 @@ public class EditPromo extends AppCompatActivity {
     private RelativeLayout logout;
     private String bitmapString = "";
     private ProgressBar pbLoading;
+    private Spinner spKategori;
+    private ArrayList<CustomKategori> kategoriList;
+    private String selectedKategori = "";
+    private ArrayAdapter<CustomKategori> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -146,12 +154,16 @@ public class EditPromo extends AppCompatActivity {
             }
         });
 
-        prepareDataEditPromo();
+        spKategori = (Spinner) findViewById(R.id.sp_kategori);
+
+        getDataMerchant();
+        //prepareDataEditPromo();
 
         simpan = findViewById(R.id.btnEditPromo);
         simpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(!bitmapString.equals("")){
                     prepareEditPromo();
                 }else{
@@ -161,6 +173,87 @@ public class EditPromo extends AppCompatActivity {
             }
         });
     }
+
+    private void getDataMerchant(){
+
+        ApiVolley request = new ApiVolley(EditPromo.this, new JSONObject(), "GET", URL.urlProfile, "", "", 0, new ApiVolley.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+
+                selectedKategori = "";
+                try {
+                    JSONObject object = new JSONObject(result);
+                    final String status = object.getJSONObject("metadata").getString("status");
+                    if (status.equals("200")) {
+                        selectedKategori = object.getJSONObject("response").getString("id_k");
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                getDataKategori();
+            }
+
+            @Override
+            public void onError(String result) {
+                Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data", Toast.LENGTH_LONG).show();
+                selectedKategori = "";
+                getDataKategori();
+            }
+        });
+    }
+
+    private void getDataKategori() {
+
+        ApiVolley request = new ApiVolley(EditPromo.this, new JSONObject(), "GET", URL.urlKategori, "", "", 0, new ApiVolley.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+
+                kategoriList = new ArrayList<>();
+                try {
+                    JSONObject object = new JSONObject(result);
+                    final String status = object.getJSONObject("metadata").getString("status");
+                    if (status.equals("200")) {
+
+                        JSONArray detail = object.getJSONArray("response");
+                        int position = 0;
+                        for (int i = 0; i < detail.length(); i++) {
+                            JSONObject isi = detail.getJSONObject(i);
+                            kategoriList.add(new CustomKategori(
+                                    isi.getString("id_k"),
+                                    isi.getString("nama")
+                            ));
+
+                            if(isi.getString("id_k").equals(selectedKategori)) position = i;
+                        }
+
+                        adapter = new ArrayAdapter<CustomKategori>(EditPromo.this, R.layout.item_simple_item_promo, kategoriList);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spKategori.setAdapter(adapter);
+
+                        try {
+                            spKategori.setSelection(position);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                prepareDataEditPromo();
+
+            }
+
+            @Override
+            public void onError(String result) {
+                Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
             Uri uri = data.getData();
@@ -193,6 +286,15 @@ public class EditPromo extends AppCompatActivity {
             linkID = save.getString("id","");
         }
 
+        String idK = "";
+        try {
+
+            CustomKategori item = (CustomKategori) spKategori.getSelectedItem();
+            idK = item.getId();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         final JSONObject jBody = new JSONObject();
         try {
             jBody.put("id", linkID);
@@ -200,6 +302,7 @@ public class EditPromo extends AppCompatActivity {
             jBody.put("link", link.getText().toString());
             jBody.put("gambar", bitmapString);
             jBody.put("keterangan", keterangan.getText().toString());
+            jBody.put("id_k", idK);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -258,6 +361,28 @@ public class EditPromo extends AppCompatActivity {
             title.setText(save.getString("title",""));
             link.setText(save.getString("link",""));
             keterangan.setText(save.getString("keterangan",""));
+
+            String idK = save.getString("id_k","");
+
+            int position = 0;
+            boolean isSelected = false;
+            for (int i = 0; i < kategoriList.size(); i++) {
+
+                if(kategoriList.get(i).getId().equals(idK)) {
+                    position = i;
+                    isSelected = true;
+                }
+            }
+
+            if(isSelected){
+
+                try {
+                    spKategori.setSelection(position);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
             pbLoading.setVisibility(View.VISIBLE);
             Picasso.with(EditPromo.this).load(save.getString("gambar",""))
                     .networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE)

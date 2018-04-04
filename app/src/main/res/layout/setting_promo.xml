@@ -165,11 +165,34 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="20dp" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_default"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kateogori Promo"
+                    android:textSize="@dimen/textSettingPromo" />
+
+                <Spinner
+                    android:id="@+id/sp_kategori"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </Spinner>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#e30112"
+                    android:orientation="vertical" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:orientation="vertical">
 
                 <TextView
@@ -182,9 +205,7 @@
                     android:id="@+id/titleSettingPromo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="-5dp"
-                    android:layout_marginTop="-15dp"
-                    android:backgroundTint="@android:color/transparent"
+                    android:background="@android:color/transparent"
                     android:hint="Promo Ulang Tahun"
                     android:textColor="#000000"
                     android:textColorHint="#50000000"
@@ -193,17 +214,13 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="-10dp"
                     android:background="#e40112" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="10dp" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
                 android:orientation="vertical">
 
                 <TextView
@@ -216,9 +233,7 @@
                     android:id="@+id/urlSettingPromo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="-5dp"
-                    android:layout_marginTop="-15dp"
-                    android:backgroundTint="@android:color/transparent"
+                    android:background="@android:color/transparent"
                     android:hint="URL Promo"
                     android:textColor="#000000"
                     android:textColorHint="#50000000"
@@ -227,7 +242,6 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="-10dp"
                     android:background="#e40112" />
             </LinearLayout>
 

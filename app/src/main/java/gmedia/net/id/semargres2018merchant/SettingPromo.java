@@ -18,19 +18,23 @@ import android.util.Base64;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class SettingPromo extends AppCompatActivity {
     private static final int PICK_IMAGE = 1;
@@ -53,6 +57,10 @@ public class SettingPromo extends AppCompatActivity {
     private TextView txtGbrHome;
     private TextView txtGbrLogout;
     private String bitmapString = "";
+    private Spinner spKategori;
+    private ArrayList<CustomKategori> kategoriList;
+    private String selectedKategori = "";
+    private ArrayAdapter<CustomKategori> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +100,7 @@ public class SettingPromo extends AppCompatActivity {
         gbrLogout = (ImageView) findViewById(R.id.gambarLogout);
         txtGbrHome = (TextView) findViewById(R.id.textGambarHome);
         txtGbrLogout = (TextView) findViewById(R.id.textGambarLogout);
+        spKategori = (Spinner) findViewById(R.id.sp_kategori);
 
         home.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -168,6 +177,84 @@ public class SettingPromo extends AppCompatActivity {
                 }
             }
         });
+
+        getDataMerchant();
+    }
+
+    private void getDataMerchant(){
+
+        ApiVolley request = new ApiVolley(SettingPromo.this, new JSONObject(), "GET", URL.urlProfile, "", "", 0, new ApiVolley.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+
+                selectedKategori = "0";
+                try {
+                    JSONObject object = new JSONObject(result);
+                    final String status = object.getJSONObject("metadata").getString("status");
+                    if (status.equals("200")) {
+                        selectedKategori = object.getJSONObject("response").getString("id_k");
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                getDataKategori();
+            }
+
+            @Override
+            public void onError(String result) {
+                Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data", Toast.LENGTH_LONG).show();
+                selectedKategori = "0";
+                getDataKategori();
+            }
+        });
+    }
+
+    private void getDataKategori() {
+
+        ApiVolley request = new ApiVolley(SettingPromo.this, new JSONObject(), "GET", URL.urlKategori, "", "", 0, new ApiVolley.VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+
+                kategoriList = new ArrayList<>();
+                try {
+                    JSONObject object = new JSONObject(result);
+                    final String status = object.getJSONObject("metadata").getString("status");
+                    if (status.equals("200")) {
+
+                        JSONArray detail = object.getJSONArray("response");
+                        int position = 0;
+                        for (int i = 0; i < detail.length(); i++) {
+                            JSONObject isi = detail.getJSONObject(i);
+                            kategoriList.add(new CustomKategori(
+                                    isi.getString("id_k"),
+                                    isi.getString("nama")
+                            ));
+
+                            if(isi.getString("id_k").equals(selectedKategori)) position = i;
+                        }
+
+                        adapter = new ArrayAdapter<CustomKategori>(SettingPromo.this, R.layout.item_simple_item_promo, kategoriList);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spKategori.setAdapter(adapter);
+
+                        try {
+                            spKategori.setSelection(position);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(String result) {
+                Toast.makeText(getApplicationContext(), "Terjadi kesalahan saat memuat data", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     private void prepareCreateDataSettingPromo() {
@@ -175,12 +262,22 @@ public class SettingPromo extends AppCompatActivity {
         proses.setEnabled(false);
         showProgressDialog();
 
+        String idK = "";
+        try {
+
+            CustomKategori item = (CustomKategori) spKategori.getSelectedItem();
+            idK = item.getId();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         final JSONObject jBody = new JSONObject();
         try {
             jBody.put("title", judul.getText().toString());
             jBody.put("link",link.getText().toString());
             jBody.put("gambar", bitmapString);
             jBody.put("keterangan", keterangan.getText().toString());
+            jBody.put("id_k", idK);
         } catch (JSONException e) {
             e.printStackTrace();
         }
